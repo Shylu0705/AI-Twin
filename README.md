@@ -20,15 +20,17 @@ AI-Twin is a local Retrieval-Augmented Generation (RAG) based assistant that hel
 
 ```
 AI-Twin/
-├── main.py              # Entry point for the interactive assistant
-├── create_dbs.py        # Script to parse JSON resumes and build databases
+├── main.py                # Entry point for the interactive assistant
+├── create_dbs.py          # Script to parse JSON resumes and build databases
 ├── define/
-│   ├── functions.py     # Core utility functions
-│   ├── prompts.py       # Prompt templates
-├── models/              # GGUF LLM model files + download_models.py
-├── databases/           # Chroma vector databases + JSON profiles
-├── requirements.txt     # Python dependencies
-├── README.md            # Project documentation
+│   ├── functions.py       # Core utility functions
+│   ├── prompts.py         # Prompt templates
+├── models/
+│   ├── models.py          # Contains the names of models
+│   ├── download_models.py # Contains program to download gguf models
+├── databases/             # Chroma vector databases + JSON profiles
+├── requirements.txt       # Python dependencies
+├── README.md              # Project documentation
 ```
 
 ---
@@ -153,3 +155,73 @@ Then, enter recruiter/job messages, and the assistant will generate candidate-st
 ## License
 
 MIT License
+
+## Notes
+
+### JSON File Structure
+
+Your resume and LinkedIn data should be structured in the following JSON format:
+
+```json
+{
+  "about": "",
+  "Education": [
+    {
+      "institution": "",
+      "degree": "",
+      "field": "",
+      "start": "",
+      "end": "",
+      "skills": []
+    }
+  ],
+  "Work experience": [
+    {
+      "Title": "",
+      "Company": "",
+      "Type": "",
+      "start": "",
+      "end": "",
+      "Location": "",
+      "Responsibilities": "",
+      "skills": []
+    }
+  ],
+  "Projects": [
+    {
+      "Title": "",
+      "Duration": "",
+      "Description": "",
+      "Project Link": "",
+      "skills": []
+    }
+  ],
+  "Certification": [
+    {
+      "Title": "",
+      "Issuer": "",
+      "date issued": "",
+      "skills": []
+    }
+  ],
+  "Organizations": [
+    {
+      "Organization": "",
+      "Position": "",
+      "Responsibilities": "",
+      "start": "",
+      "end": "",
+      "skills": []
+    }
+  ],
+  "Languages": [
+    {
+      "Language": "",
+      "Reading proficiency": "",
+      "Writing Proficiency": "",
+      "Speaking proficiency": ""
+    }
+  ],
+  "skills": []
+}
+```
