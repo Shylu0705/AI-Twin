@@ -1,0 +1,1 @@
+model_names = ['llama3.1-8b-q4_K_S.gguf', 'shisa-v2-mistral-nemo-12b.Q4_K_M.gguf', 'shisa-v2-mistral-nemo-12b.Q5_K_M.gguf', 'shisa-v2-mistral-nemo-12b.Q8_0.gguf']

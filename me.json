@@ -1,0 +1,406 @@
+{
+  "Name": "Shylendra Sudamani",
+  "Preferred name": "Shylendra",
+  "Address": "North Dartmouth, United States",
+  "About": "Results-driven and versatile Information Sciences and Technology graduate from Anna University, currently studying Data Science at UMass Dartmouth, and eager to gain hands-on experience in data science and software development. Focused on continuous learning, a passion for technology and the arts, and a strong ability to collaborate effectively and adapt to diverse team environments.",
+
+  "Education": [
+    {
+      "institution": "University of Massachusetts Dartmouth",
+      "degree": "Master of Science - MS",
+      "field": "Data Science",
+      "start": "Aug 2024",
+      "end": "Sep 2026",
+      "skills": [
+        "Planning",
+        "Organizational Theory",
+        "C++",
+        "Data Storage",
+        "Data Structures",
+        "Team Organization",
+        "Data Analysis",
+        "Interpersonal Communication",
+        "Python",
+        "Teamwork",
+        "Data Science",
+        "Information Technology"
+      ]
+    },
+    {
+      "institution": "College of Engineering, Guindy",
+      "degree": "Bachelor of Technology - BTech",
+      "field": "Information Technology",
+      "start": "2020",
+      "end": "2024",
+      "skills": [
+        "PHP",
+        "Planning",
+        "Organizational Theory",
+        "C++",
+        "Data Storage",
+        "Data Structures",
+        "HTML",
+        "Team Organization",
+        "Data Analysis",
+        "Embedded C++",
+        "ICT",
+        "Software Build",
+        "Drones",
+        "Robotics",
+        "Interpersonal Communication",
+        "CSS",
+        "Python",
+        "Teamwork",
+        "Data Science",
+        "Flutter",
+        "Information Technology"
+      ]
+    },
+    {
+      "institution": "GEMS Education",
+      "degree": "12th",
+      "field": "Math, Physics, Chemistry, Biology",
+      "start": "2018",
+      "end": "2020",
+      "skills": [
+        "PHP",
+        "Planning",
+        "Organizational Theory",
+        "Team Organization",
+        "Interpersonal Communication",
+        "Science Education",
+        "Teamwork"
+      ]
+    }
+  ],
+
+  "Work experience": [
+    {
+      "Title": "Software Intern",
+      "Company": "PreludeSys India ltd",
+      "Type": "Internship",
+      "start": "Jul 2023",
+      "end": "Sep 2023",
+      "Location": "Hybrid",
+      "Responsibilities": [
+        "Developed a Python web scraping project using elements like beautifulsoup and argparse",
+        "Scraped data from online shopping websites, including Amazon.com and Flipkart.com, enhancing data collection efficiency",
+        "Improved data collection rates significantly through optimized scraping techniques"
+      ],
+      "skills": [
+        "Data Storage",
+        "Data Structures",
+        "Python",
+        "Teamwork",
+        "Planning",
+        "Interpersonal Communication",
+        "Data Analysis",
+        "Web Scraping",
+        "Organizational Theory"
+      ]
+    },
+    {
+      "Title": "Technology Intern",
+      "Company": "Hibiscus Foundation",
+      "Type": "Internship",
+      "start": "Jul 2022",
+      "end": "Aug 2022",
+      "Location": "Hybrid",
+      "Responsibilities": [
+        "Utilized React JS to enhance the company website's functionality and user experience",
+        "Engineered key features to improve website performance and engagement",
+        "Managed regular maintenance and updates to ensure optimal website operation",
+        "Executed data analysis using Excel to track website metrics"
+      ],
+      "skills": [
+        "Information Technology",
+        "Teamwork",
+        "PHP",
+        "Planning",
+        "Interpersonal Communication",
+        "CSS",
+        "Website Updating",
+        "JavaScript",
+        "Software Build",
+        "Team Organization",
+        "React.js",
+        "Organizational Theory"
+      ]
+    },
+    {
+      "Title": "Management Intern",
+      "Company": "Hibiscus Foundation",
+      "Type": "Internship",
+      "start": "Sep 2020",
+      "end": "Nov 2020",
+      "Location": "Hybrid",
+      "Responsibilities": [
+        "Facilitated meetings between departments to drive collaboration and decision-making",
+        "Conducted research on mental health issues and their social implications",
+        "Managed coordination and administration of cross-functional departments such as Technology, HR, Content, and Marketing",
+        "Analyzed survey data on mental health awareness using Excel"
+      ],
+      "skills": [
+        "Teamwork",
+        "Planning",
+        "Interpersonal Communication",
+        "Team Organization",
+        "Management",
+        "Organizational Theory"
+      ]
+    }
+  ],
+
+  "Projects": [
+    {
+      "Title": "RAG based chatbot app",
+      "Duration": "Feb 2025 - Apr 2025",
+      "Description": "Constructed a Retrieval-Augmented Generation (RAG) chatbot that crawls entire websites respecting robots.txt. Enforced Llama 3.2 8B model in python to run locally. Embedded website HTML content using ChromaDB and Llama 3 8B, maintaining context via a sliding window approach. Implemented a full-stack system with user authentication and chat history stored via PostgreSQL. Achieved real-time query response with an average latency under 1.5 seconds.",
+      "Project Link": "GitHub - Shylu0705/rag-chat-app-project",
+      "skills": [
+        "Web Crawling",
+        "LLM",
+        "Vector Databases",
+        "SQL",
+        "PostgreSQL",
+        "Prompt Engineering",
+        "Python",
+        "DBMS",
+        "Docker"
+      ]
+    },
+    {
+      "Title": "Deep Fake detection Engine",
+      "Duration": "Sep 2024 - Dec 2024",
+      "Description": "Analyzed around 200,000 images from a Kaggle dataset for deepfake detection. Achieved 95%+ accuracy with no overfitting. Used VGG16 CNN for feature extraction and fine-tuning. Focused on computational efficiency while maintaining high accuracy. Relevant for security, media integrity, and ethical AI applications.",
+      "Project Link": "GitHub - Shylu0705/Deep_Fakes_Detection_Engine",
+      "skills": [
+        "Deep Learning",
+        "CNN",
+        "Python",
+        "Transfer Learning"
+      ]
+    },
+    {
+      "Title": "Credit risk Analysis using Machine Learning",
+      "Duration": "Sep 2024 - Nov 2024",
+      "Description": "Conducted credit risk analysis using machine learning techniques on a dataset containing over 700 records. Built and evaluated multiple machine learning models including Random Forest Classifier (79.2% accuracy), Support Vector Classifier (82.1% accuracy), and Logistic Regression (83.5% accuracy). Optimized model selection by analyzing metrics such as precision, recall, and F1-score.",
+      "Project Link": "GitHub - Shylu0705/Credit-Risk-Analysys",
+      "skills": [
+        "Machine Learning",
+        "Teamwork"
+      ]
+    },
+    {
+      "Title": "IoT and Machine Learning Based Calorie Management System",
+      "Duration": "Sep 2023 - Jun 2024",
+      "Description": "Developed an AI-powered calorie management system. Used Tableau for data analysis. Employed deep learning to identify foods and calculate calories using images (78% accuracy). Integrated IoT using Raspberry Pi to create a smart cycle that tracks calories burnt (~85% accuracy). Applied ML algorithms for personalized diet recommendations.",
+      "Project Link": "GitHub - Shylu0705/FYP_BTech_Project",
+      "skills": [
+        "Project Management",
+        "Machine Learning",
+        "IoT",
+        "Deep Learning",
+        "Data Analysis",
+        "Python"
+      ]
+    },
+    {
+      "Title": "Gesture controlled drone",
+      "Duration": "Sep 2023 - Jan 2024",
+      "Description": "Developed a program to control a wireless drone using gestures. Implemented a key-point classification algorithm using Keras (94% accuracy). Leveraged mediapipe to identify gestures and map them to drone movements.",
+      "Project Link": "GitHub - Shylu0705/Gesture-Control-Drone",
+      "skills": [
+        "IoT",
+        "Machine Learning",
+        "Computer Vision",
+        "Deep Learning",
+        "Python"
+      ]
+    },
+    {
+      "Title": "Stock market prediction system",
+      "Duration": "Mar 2023 - May 2023",
+      "Description": "Implemented LSTM and SVR regression models on Tesla stocks dataset (MSE 273/325, R^2 0.87/0.93). Applied LSTM to SNP500 stocks database. Created a streamlit web app for 30-day predictions.",
+      "Project Link": "GitHub - Shylu0705/Stock-Prediction",
+      "skills": [
+        "Deep Learning",
+        "LSTM",
+        "Machine Learning",
+        "Python"
+      ]
+    }
+  ],
+
+  "Certification": [
+    {
+      "Title": "Quantum Computing Fundamentals",
+      "Issuer": "LinkedIn",
+      "date issued": "Apr 2025",
+      "skills": [
+        "Quantum Computing"
+      ]
+    },
+    {
+      "Title": "Introduction to Generative Adversarial Networks (GANs)",
+      "Issuer": "LinkedIn",
+      "date issued": "Feb 2025",
+      "skills": [
+        "Generative AI",
+        "GANs"
+      ]
+    },
+    {
+      "Title": "Python Basic Certificate",
+      "Issuer": "HackerRank",
+      "date issued": "Oct 2024",
+      "skills": [
+        "Python"
+      ]
+    },
+    {
+      "Title": "Java Basic Certificate",
+      "Issuer": "HackerRank",
+      "date issued": "Sep 2022",
+      "skills": [
+        "Java"
+      ]
+    },
+    {
+      "Title": "Learn how to build an AI",
+      "Issuer": "Udemy",
+      "date issued": "Sep 2022",
+      "skills": [
+        "Q learning",
+        "LLM",
+        "Deep Learning",
+        "CNN",
+        "A3C"
+      ]
+    },
+    {
+      "Title": "Certificate-B",
+      "Issuer": "NATIONAL CADET CORPS - India",
+      "date issued": "Jan 2023",
+      "skills": [
+        "Teamwork",
+        "discipline",
+        "Organization Skills",
+        "Leadership"
+      ]
+    }
+  ],
+
+  "Organizations": [
+    {
+      "Organization": "University of Massachusetts Dartmouth Data Science Club",
+      "Position": "Vice President",
+      "Responsibilities": [
+        "Coordinated with other members to organize club events every week",
+        "Recruited faculty speakers to present on advanced ML and AI topics"
+      ],
+      "start": "10/2024",
+      "end": "present",
+      "Location": "North Dartmouth, United States",
+      "skills": [
+        "Event Coordination",
+        "Leadership",
+        "Public Speaking",
+        "Networking"
+      ]
+    },
+    {
+      "Organization": "Anna University Student's Entrepreneurship Club",
+      "Position": "Head of Operations",
+      "Responsibilities": [
+        "Led the planning and execution of major events",
+        "Organized Enantra '23 (500+ attendees)",
+        "Organized AUMUN '23 (200+ students from 10+ universities)"
+      ],
+      "start": "08/2021",
+      "end": "07/2023",
+      "Location": "Chennai, India",
+      "skills": [
+        "Event Management",
+        "Team Leadership",
+        "Strategic Planning",
+        "Logistics Coordination"
+      ]
+    },
+    {
+      "Organization": "National Cadet Corps",
+      "Position": "NC2-Cadet, Navy Division",
+      "Responsibilities": [
+        "Led team-based activities promoting discipline and coordination",
+        "Took charge of training camps, group tasks, and outreach programs"
+      ],
+      "start": "03/2021",
+      "end": "07/2023",
+      "Location": "Chennai, India",
+      "skills": [
+        "Discipline",
+        "Team Leadership",
+        "Physical Training",
+        "Outreach Programs"
+      ]
+    }
+  ],
+
+  "Languages": [
+    {
+      "Language": "English",
+      "Reading proficiency": "Fluent",
+      "Writing Proficiency": "Fluent",
+      "Speaking proficiency": "Fluent"
+    },
+    {
+      "Language": "Tamil",
+      "Reading proficiency": "Fluent",
+      "Writing Proficiency": "Basic",
+      "Speaking proficiency": "Fluent"
+    },
+    {
+      "Language": "Hindi",
+      "Reading proficiency": "Fluent",
+      "Writing Proficiency": "Fluent",
+      "Speaking proficiency": "Fluent"
+    },
+    {
+      "Language": "Japanese",
+      "Reading proficiency": "Basic",
+      "Writing Proficiency": "Basic",
+      "Speaking proficiency": "Basic"
+    },
+    {
+      "Language": "Spanish",
+      "Reading proficiency": "Fluent",
+      "Writing Proficiency": "Basic",
+      "Speaking proficiency": "Basic"
+    }
+  ],
+
+  "skills": [
+    "Python",
+    "Machine Learning",
+    "Deep Learning",
+    "Data Analysis",
+    "Web Scraping",
+    "React.js",
+    "JavaScript",
+    "C++",
+    "Java",
+    "SQL",
+    "PostgreSQL",
+    "LLM",
+    "Prompt Engineering",
+    "GANs",
+    "Quantum Computing",
+    "IoT",
+    "Computer Vision",
+    "Project Management",
+    "Teamwork",
+    "Leadership",
+    "Communication",
+    "Problem Solving"
+  ]
+}
