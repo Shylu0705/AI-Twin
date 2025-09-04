@@ -1,9 +1,5 @@
 import os
 
-from collections import deque
-
-from typer import prompt
-
 from define import functions
 from models import models
 

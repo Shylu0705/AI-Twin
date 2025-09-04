@@ -9,6 +9,15 @@ chromadb>=0.5.0
 
 # Data handling
 pandas>=2.0.0
-
-# General utilities
 numpy>=1.24.0
+
+# Google API / OAuth
+google-auth-oauthlib>=1.0.0
+google-api-python-client>=2.0.0
+
+# Email handling
+# (MIME and base64 are built-in, no extra packages needed)
+
+# Utilities
+requests>=2.31.0
+tqdm>=4.66.0

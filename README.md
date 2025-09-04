@@ -68,6 +68,15 @@ AI-Twin/
 
    This will fetch and store all required models automatically.
 
+5. Upload auth.json:
+
+  Go to [This link](https://console.cloud.google.com/projectselector2/apis/dashboard?supportedpurview=project&authuser=2) and create a new project.
+
+  Click on Credentials and click on '+Create credentials' and choose 'OAuth client ID'
+
+  Choose 'Desktop App' as application type and click create
+
+  Click on 'Download Json' and rename it to 'auth.json' and upload it to the root project file (AI-Twin)
 ---
 
 ## Usage
@@ -91,20 +100,37 @@ python create_dbs.py
 
 ### Step 2: Run the Assistant
 
+1. Messaging
+
 Start the interactive assistant:
 
 ```bash
 python main.py
 ```
 
-You will be prompted to enter:
+You will be prompted to:
 
-* Index number (from DB creation step)
-* RAG type (1 or 2)
-* LLM model type (1–4)
+* Log into Google
+* Enter RAG type (1 or 2)
+* Enter LLM model type (1–4)
 
 Then, enter recruiter/job messages, and the assistant will generate candidate-style replies.
 
+2. Emailing
+
+Start the interactive assistant:
+
+```bash
+python main_emails.py
+```
+
+You will be prompted to:
+
+* Log into Google
+* Enter RAG type (1 or 2)
+* Enter LLM model type (1–4)
+
+The program automatically searches for any unread emails from recruiters and replies to them.
 ---
 
 ## Example Flow
