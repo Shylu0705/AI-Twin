@@ -1,12 +1,15 @@
 import json
-import os  # Added to handle absolute paths
-from langchain_community.vectorstores import Chroma  # Updated import
-from langchain_community.embeddings import HuggingFaceEmbeddings  # Added import
+import os
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 from define import functions
 
 # Get the directory of the current script
 script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Authenticate the user using Google OAuth
+service = functions.authenticate()
 
 jsonpath = input("Enter json file path: ")
 
@@ -15,9 +18,13 @@ with open(jsonpath, "r", encoding="utf-8") as f:
     data = json.load(f)
 
 name = data.get("Name", "Unknown")
+email = functions.get_logged_in_email(service)
+
+# Authenticate email ID
+## To be completed
 
 # Add entry to DataFrame
-index = functions.add_entry(name)
+index = functions.add_entry(name, email)
 
 print(f"Your Index no is: {index}")
 

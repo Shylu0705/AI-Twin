@@ -7,11 +7,17 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.prompts import ChatPromptTemplate
 import pandas as pd
 
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+import base64
+from email.mime.text import MIMEText
+
 from . import prompts
 
 """
-This file contains important functions required to run the LLM an d create or retrieve the database
+This file contains important functions required to run the LLM and create or retrieve the database along with email functions
 """
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 def retrieve_relevant_chunks_rag1(db, query, k=10, score_threshold=0.5): # Main functionality of rag1
     results = db.similarity_search_with_relevance_scores(query, k=k)
@@ -107,10 +113,56 @@ def rag_prompt(jsondata, db, query_text, rag_type): # Unified prompt function fo
     else:
         raise ValueError("Invalid RAG type")
 
+def rag1_email_prompt(jsondata, db, query_text): # Prompt for rag1 for Email
+
+    name = jsondata.get("Name", "Unknown")
+    prefname = jsondata.get("Preferred name", "Unknown")
+    address = jsondata.get("Address", "Unknown")
+    about = jsondata.get("About", "Unknown")
+
+    context_text = retrieve_relevant_chunks_rag1(db, query_text)
+
+    prompt = ChatPromptTemplate.from_template(prompts.RAG_EMAIL_PROMPT_TEMPLATE).format(
+        context=context_text, 
+        question=query_text,
+        name = name,
+        address = address,
+        about = about
+    )
+
+    return prompt
+
+def rag2_email_prompt(jsondata, db, query_text): # Prompt for rag2 for Email
+
+    name = jsondata.get("Name", "Unknown")
+    prefname = jsondata.get("Preferred name", "Unknown")
+    address = jsondata.get("Address", "Unknown")
+    about = jsondata.get("About", "Unknown")
+
+    context_text = retrieve_relevant_chunks_rag2(db, jsondata, query_text)
+
+    prompt = ChatPromptTemplate.from_template(prompts.RAG_EMAIL_PROMPT_TEMPLATE).format(
+        context=context_text, 
+        question=query_text,
+        name = name,
+        address = address,
+        about = about
+    )
+
+    return prompt
+
+def rag_email_prompt(jsondata, db, query_text, rag_type): # Unified prompt function for both RAG1 and RAG2 for Email
+    if rag_type == 1:
+        return rag1_prompt(jsondata, db, query_text)
+    elif rag_type == 2:
+        return rag2_prompt(jsondata, db, query_text)
+    else:
+        raise ValueError("Invalid RAG type")
+
 def check_if_JD(llm, context_text): # Check if query contains JD
 
     prompt = ChatPromptTemplate.from_template(prompts.CHECK_FOR_JD).format(
-        context=context_text
+        query_text=context_text
     )
 
     response = llm(prompt, max_tokens=4096, stop=[])["choices"][0]["text"]
@@ -149,21 +201,21 @@ def get_user_paths(script_dir, index, rag_type): # Get Json and chromadb paths
     
     return jsonpath, chroma_path
 
-def add_entry(name): # Add entry to the CSV file
+def add_entry(name, email): # Add entry to the CSV file
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     csv_file = os.path.join(project_root, 'databases', 'persons.csv')
 
     if os.path.exists(csv_file):
         df = pd.read_csv(csv_file)
     else:
-        df = pd.DataFrame(columns=["name", "index"])
+        df = pd.DataFrame(columns=["name", "email", "index"])
 
     if not df.empty:
         next_index = df["index"].max() + 1
     else:
         next_index = 1
 
-    new_row = {"name": name, "index": next_index}
+    new_row = {"name": name, "email": email, "index": next_index}
     df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
 
     df.to_csv(csv_file, index=False)
@@ -276,3 +328,91 @@ def context_built_prompt(query_text, chat_history): # Create prompt with chat hi
     
     prompt += query_text + f"\n\n'''"
     return prompt
+
+def get_index(email): # Get the index of a user by their email
+    csv_path = os.path.join(project_root, 'databases', 'persons.csv')
+    df = pd.read_csv(csv_path)
+
+    for _, row in df.iterrows():
+        if row["email"] == email:
+            return row["index"]
+    return None
+
+### Email Functions
+
+SCOPES = ["https://www.googleapis.com/auth/gmail.modify"]
+
+def authenticate(): # Authenticate user with OAuth2 and return Gmail API service.
+    flow = InstalledAppFlow.from_client_secrets_file(os.path.join(project_root, "auth.json"), SCOPES)
+    creds = flow.run_local_server(port=0)
+    return build("gmail", "v1", credentials=creds)
+
+def get_unread_messages(service, max_results=10):  # Fetch unread messages from Gmail inbox.
+    results = service.users().messages().list(
+        userId="me", labelIds=["UNREAD"], maxResults=max_results
+    ).execute()
+
+    messages = results.get("messages", [])
+    full_messages = []
+
+    for msg in messages:
+        msg_id = msg["id"]
+        msg_detail = service.users().messages().get(
+            userId="me",
+            id=msg_id,
+            format="full"  # get all parts of the message
+        ).execute()
+
+        payload = msg_detail.get("payload", {})
+        parts = payload.get("parts", [])
+
+        body = ""
+        if parts:
+            for part in parts:
+                if part.get("mimeType") == "text/plain":
+                    data = part["body"].get("data", "")
+                    body = base64.urlsafe_b64decode(data).decode("utf-8", errors="ignore")
+                    break
+        else:
+            data = payload.get("body", {}).get("data", "")
+            body = base64.urlsafe_b64decode(data).decode("utf-8", errors="ignore")
+
+        full_messages.append({"id": msg_id, "body": body})
+
+    return full_messages
+
+def create_reply(to, subject, body, thread_id): # Create reply message, preserving threading.
+    message = MIMEText(body)
+    message["to"] = to
+    message["subject"] = "Re: " + subject
+    raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
+    return {"raw": raw, "threadId": thread_id}
+
+def reply_to_message(service, msg_id, reply_text): # Reply to a specific message and mark it as read.
+    message = service.users().messages().get(userId="me", id=msg_id).execute()
+    headers = message["payload"]["headers"]
+
+    sender = None
+    subject = "No Subject"
+    for h in headers:
+        if h["name"] == "From":
+            sender = h["value"]
+        if h["name"] == "Subject":
+            subject = h["value"]
+
+    if sender:
+        reply = create_reply(sender, subject, reply_text, message["threadId"])
+        sent = service.users().messages().send(userId="me", body=reply).execute()
+        print(f"Replied to {sender} with message ID: {sent['id']}")
+
+        # Mark message as read
+        mark_as_read(service, msg_id)
+
+def mark_as_read(service, msg_id): # Mark a message as read.
+    service.users().messages().modify(
+        userId="me", id=msg_id, body={"removeLabelIds": ["UNREAD"]}
+    ).execute()
+
+def get_logged_in_email(service): # Return the email address of the logged in user.
+    profile = service.users().getProfile(userId="me").execute()
+    return profile["emailAddress"]
