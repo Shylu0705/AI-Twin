@@ -1,4 +1,5 @@
 import os
+import time
 
 from define import functions
 from models import models
@@ -34,13 +35,21 @@ jsondata = functions.load_json(jsonpath)
 
 db = functions.load_db(CHROMA_PATH)
 
-unread_messages = functions.get_unread_messages(service)
+while True:
+    unread_messages = functions.get_unread_messages(service)
+    if not unread_messages:
+        print("No unread messages found.")
+        time.sleep(5)  # Wait for 5 seconds before checking again
+    else:
+        for message in unread_messages:
+            if functions.check_if_JD(llm, message['body']):
+            # if True:  # For testing purposes, bypass the JD check
 
-for message in unread_messages:
-    if functions.check_if_JD(llm, message['body']):
-        Got_JD = True
-        prompt = functions.rag_email_prompt(jsondata, db, message, rag_type)
+                print(f"Replying to: \n\n{message['body']}\n\n")
+                prompt = functions.rag_email_prompt(jsondata, db, message['body'], rag_type)
 
-        response = llm(prompt, max_tokens=4096, stop=[])["choices"][0]["text"]
+                print(f"\n\nGenerated prompt \n\n")
+                response = llm(prompt, max_tokens=4096, stop=[])["choices"][0]["text"]
 
-        functions.reply_to_message(service, message['id'], response)
+                print(f"Reply text:\n\n{response}")
+                functions.reply_to_message(service, message['id'], response)
